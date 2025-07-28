@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sản Phẩm - HomeStore</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/products.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header-section">
+        <!-- Top Bar -->
+        <div class="top-bar bg-dark text-white py-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <small><i class="fas fa-phone"></i> Hotline: 1900 1234</small>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <small><i class="fas fa-truck"></i> Miễn phí giao hàng toàn quốc</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+            <div class="container">
+                <a class="navbar-brand fw-bold" href="../index.html">
+                    <i class="fas fa-home"></i> HomeStore
+                </a>
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html">Trang Chủ</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="menDropdown" role="button" data-bs-toggle="dropdown">
+                                Nam
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="men-clothing.html">Quần Áo Nam</a></li>
+                                <li><a class="dropdown-item" href="men-shoes.html">Giày Nam</a></li>
+                                <li><a class="dropdown-item" href="men-accessories.html">Phụ Kiện Nam</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="womenDropdown" role="button" data-bs-toggle="dropdown">
+                                Nữ
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="women-clothing.html">Quần Áo Nữ</a></li>
+                                <li><a class="dropdown-item" href="women-shoes.html">Giày Nữ</a></li>
+                                <li><a class="dropdown-item" href="women-accessories.html">Phụ Kiện Nữ</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="kids.html">Trẻ Em</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="sale.html">Sale</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">Về Chúng Tôi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Liên Hệ</a>
+                        </li>
+                    </ul>
+                    
+                    <div class="d-flex">
+                        <div class="search-box me-3">
+                            <input type="text" class="form-control" placeholder="Tìm kiếm..." id="searchInput">
+                        </div>
+                        <a href="cart.html" class="btn btn-outline-primary position-relative me-2">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                3
+                            </span>
+                        </a>
+                        <a href="wishlist.html" class="btn btn-outline-secondary">
+                            <i class="fas fa-heart"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="bg-light py-3">
+        <div class="container">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="../index.html">Trang Chủ</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Sản Phẩm</li>
+            </ol>
+        </div>
+    </nav>
+
+    <!-- Products Section -->
+    <section class="products-section py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Sidebar Filters -->
+                <div class="col-lg-3">
+                    <div class="filters-sidebar">
+                        <h5 class="mb-4">Bộ Lọc</h5>
+                        
+                        <!-- Category Filter -->
+                        <div class="filter-group mb-4">
+                            <h6 class="filter-title">Danh Mục</h6>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="men" id="categoryMen">
+                                <label class="form-check-label" for="categoryMen">
+                                    Thời Trang Nam
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="women" id="categoryWomen">
+                                <label class="form-check-label" for="categoryWomen">
+                                    Thời Trang Nữ
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="kids" id="categoryKids">
+                                <label class="form-check-label" for="categoryKids">
+                                    Thời Trang Trẻ Em
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="accessories" id="categoryAccessories">
+                                <label class="form-check-label" for="categoryAccessories">
+                                    Phụ Kiện
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Price Range Filter -->
+                        <div class="filter-group mb-4">
+                            <h6 class="filter-title">Khoảng Giá</h6>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="priceRange" value="0-300000" id="price1">
+                                <label class="form-check-label" for="price1">
+                                    Dưới 300.000đ
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="priceRange" value="300000-500000" id="price2">
+                                <label class="form-check-label" for="price2">
+                                    300.000đ - 500.000đ
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="priceRange" value="500000-800000" id="price3">
+                                <label class="form-check-label" for="price3">
+                                    500.000đ - 800.000đ
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="priceRange" value="800000-1000000" id="price4">
+                                <label class="form-check-label" for="price4">
+                                    800.000đ - 1.000.000đ
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="priceRange" value="1000000+" id="price5">
+                                <label class="form-check-label" for="price5">
+                                    Trên 1.000.000đ
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Size Filter -->
+                        <div class="filter-group mb-4">
+                            <h6 class="filter-title">Kích Thước</h6>
+                            <div class="size-options d-flex flex-wrap gap-2">
+                                <input type="checkbox" class="btn-check" id="sizeXS" value="XS">
+                                <label class="btn btn-outline-secondary btn-sm" for="sizeXS">XS</label>
+                                
+                                <input type="checkbox" class="btn-check" id="sizeS" value="S">
+                                <label class="btn btn-outline-secondary btn-sm" for="sizeS">S</label>
+                                
+                                <input type="checkbox" class="btn-check" id="sizeM" value="M">
+                                <label class="btn btn-outline-secondary btn-sm" for="sizeM">M</label>
+                                
+                                <input type="checkbox" class="btn-check" id="sizeL" value="L">
+                                <label class="btn btn-outline-secondary btn-sm" for="sizeL">L</label>
+                                
+                                <input type="checkbox" class="btn-check" id="sizeXL" value="XL">
+                                <label class="btn btn-outline-secondary btn-sm" for="sizeXL">XL</label>
+                                
+                                <input type="checkbox" class="btn-check" id="sizeXXL" value="XXL">
+                                <label class="btn btn-outline-secondary btn-sm" for="sizeXXL">XXL</label>
+                            </div>
+                        </div>
+
+                        <!-- Color Filter -->
+                        <div class="filter-group mb-4">
+                            <h6 class="filter-title">Màu Sắc</h6>
+                            <div class="color-options d-flex flex-wrap gap-2">
+                                <input type="checkbox" class="color-check" id="colorBlack" value="black">
+                                <label class="color-option" for="colorBlack" style="background-color: #000000;" title="Đen"></label>
+                                
+                                <input type="checkbox" class="color-check" id="colorWhite" value="white">
+                                <label class="color-option" for="colorWhite" style="background-color: #ffffff;" title="Trắng"></label>
+                                
+                                <input type="checkbox" class="color-check" id="colorGray" value="gray">
+                                <label class="color-option" for="colorGray" style="background-color: #808080;" title="Xám"></label>
+                                
+                                <input type="checkbox" class="color-check" id="colorBlue" value="blue">
+                                <label class="color-option" for="colorBlue" style="background-color: #007bff;" title="Xanh dương"></label>
+                                
+                                <input type="checkbox" class="color-check" id="colorRed" value="red">
+                                <label class="color-option" for="colorRed" style="background-color: #dc3545;" title="Đỏ"></label>
+                                
+                                <input type="checkbox" class="color-check" id="colorGreen" value="green">
+                                <label class="color-option" for="colorGreen" style="background-color: #28a745;" title="Xanh lá"></label>
+                            </div>
+                        </div>
+
+                        <!-- Rating Filter -->
+                        <div class="filter-group mb-4">
+                            <h6 class="filter-title">Đánh Giá</h6>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rating" value="5" id="rating5">
+                                <label class="form-check-label" for="rating5">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    5 sao
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rating" value="4" id="rating4">
+                                <label class="form-check-label" for="rating4">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="far fa-star text-warning"></i>
+                                    4 sao trở lên
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rating" value="3" id="rating3">
+                                <label class="form-check-label" for="rating3">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="far fa-star text-warning"></i>
+                                    <i class="far fa-star text-warning"></i>
+                                    3 sao trở lên
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Clear Filters -->
+                        <button class="btn btn-outline-secondary w-100" id="clearFilters">
+                            <i class="fas fa-refresh"></i> Xóa Bộ Lọc
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Products Grid -->
+                <div class="col-lg-9">
+                    <!-- Toolbar -->
+                    <div class="products-toolbar d-flex justify-content-between align-items-center mb-4">
+                        <div class="results-info">
+                            <span id="resultsInfo">Đang tải sản phẩm...</span>
+                        </div>
+                        
+                        <div class="toolbar-actions d-flex align-items-center gap-3">
+                            <!-- View Toggle -->
+                            <div class="view-toggle">
+                                <button class="btn btn-outline-secondary btn-sm active" id="gridView">
+                                    <i class="fas fa-th"></i>
+                                </button>
+                                <button class="btn btn-outline-secondary btn-sm" id="listView">
+                                    <i class="fas fa-list"></i>
+                                </button>
+                            </div>
+                            
+                            <!-- Sort -->
+                            <select class="form-select form-select-sm" id="sortSelect" style="width: auto;">
+                                <option value="default">Sắp xếp mặc định</option>
+                                <option value="name-asc">Tên A-Z</option>
+                                <option value="name-desc">Tên Z-A</option>
+                                <option value="price-asc">Giá thấp đến cao</option>
+                                <option value="price-desc">Giá cao đến thấp</option>
+                                <option value="rating-desc">Đánh giá cao nhất</option>
+                                <option value="newest">Mới nhất</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Loading Spinner -->
+                    <div class="text-center mb-4" id="loadingSpinner" style="display: none;">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Đang tải...</span>
+                        </div>
+                        <p class="mt-2">Đang tải sản phẩm...</p>
+                    </div>
+
+                    <!-- Products Grid -->
+                    <div class="row g-4" id="productsContainer">
+                        <!-- Products will be loaded here by JavaScript -->
+                        <div class="col-12 text-center">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Đang tải sản phẩm...</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <nav aria-label="Pagination" class="mt-5">
+                        <ul class="pagination justify-content-center" id="pagination">
+                            <!-- Pagination will be generated by JavaScript -->
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-section bg-dark text-white py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-3">HomeStore</h5>
+                    <p>Cửa hàng thời trang trực tuyến hàng đầu Việt Nam. Chúng tôi mang đến những sản phẩm chất lượng cao với giá cả hợp lý.</p>
+                    <div class="social-links">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-3">Danh Mục</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="men-clothing.html" class="text-white-50">Thời Trang Nam</a></li>
+                        <li><a href="women-clothing.html" class="text-white-50">Thời Trang Nữ</a></li>
+                        <li><a href="kids.html" class="text-white-50">Thời Trang Trẻ Em</a></li>
+                        <li><a href="accessories.html" class="text-white-50">Phụ Kiện</a></li>
+                        <li><a href="sale.html" class="text-white-50">Sale</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-3">Hỗ Trợ Khách Hàng</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="contact.html" class="text-white-50">Liên Hệ</a></li>
+                        <li><a href="shipping.html" class="text-white-50">Chính Sách Giao Hàng</a></li>
+                        <li><a href="return.html" class="text-white-50">Chính Sách Đổi Trả</a></li>
+                        <li><a href="privacy.html" class="text-white-50">Chính Sách Bảo Mật</a></li>
+                        <li><a href="faq.html" class="text-white-50">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-3">Liên Hệ</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> 123 Đường ABC, Quận 1, TP.HCM</li>
+                        <li class="mb-2"><i class="fas fa-phone me-2"></i> 1900 1234</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@homestore.vn</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <hr class="my-4">
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2024 HomeStore. Tất cả quyền được bảo lưu.</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <img src="https://via.placeholder.com/40x25/007bff/ffffff?text=VISA" alt="Visa" class="me-2">
+                    <img src="https://via.placeholder.com/40x25/ff6b35/ffffff?text=MC" alt="Mastercard" class="me-2">
+                    <img src="https://via.placeholder.com/40x25/28a745/ffffff?text=ATM" alt="ATM">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- JavaScript Files -->
+    <script src="../js/global.js"></script>
+    <script src="../js/products.js"></script>
+</body>
+</html> 

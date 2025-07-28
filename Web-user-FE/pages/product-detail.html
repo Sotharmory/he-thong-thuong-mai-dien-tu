@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Tiết Sản Phẩm - HomeStore</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/product-detail.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header-section">
+        <!-- Top Bar -->
+        <div class="top-bar bg-dark text-white py-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <small><i class="fas fa-phone"></i> Hotline: 1900 1234</small>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <small><i class="fas fa-truck"></i> Miễn phí giao hàng toàn quốc</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+            <div class="container">
+                <a class="navbar-brand fw-bold" href="../index.html">
+                    <i class="fas fa-home"></i> HomeStore
+                </a>
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html">Trang Chủ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="products.html">Sản Phẩm</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">Về Chúng Tôi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Liên Hệ</a>
+                        </li>
+                    </ul>
+                    
+                    <div class="d-flex">
+                        <div class="search-box me-3">
+                            <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                        </div>
+                        <a href="cart.html" class="btn btn-outline-primary position-relative me-2">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-badge">
+                                0
+                            </span>
+                        </a>
+                        <a href="wishlist.html" class="btn btn-outline-secondary">
+                            <i class="fas fa-heart"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="py-5">
+        <div class="container">
+            <!-- Loading Spinner -->
+            <div id="loadingSpinner" class="text-center py-5">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Đang tải...</span>
+                </div>
+                <p class="mt-2">Đang tải thông tin sản phẩm...</p>
+            </div>
+
+            <!-- Error Message -->
+            <div id="errorMessage" class="alert alert-danger" style="display: none;" role="alert">
+                <h4>Không thể tải sản phẩm</h4>
+                <p>Vui lòng thử lại sau.</p>
+            </div>
+
+            <!-- Product Content -->
+            <div id="productDetailContent" style="display: none;">
+                <!-- Breadcrumb -->
+                <nav aria-label="breadcrumb" class="mb-4">
+                    <ol class="breadcrumb" id="breadcrumbContainer">
+                        <li class="breadcrumb-item"><a href="../index.html">Trang Chủ</a></li>
+                        <li class="breadcrumb-item"><a href="products.html">Sản Phẩm</a></li>
+                        <li class="breadcrumb-item active" id="productNameBreadcrumb" aria-current="page"></li>
+                    </ol>
+                </nav>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- Product Image -->
+                        <div class="product-image-container mb-4">
+                            <div class="product-image">
+                                <i class="fas fa-shopping-bag"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <!-- Product Details -->
+                        <div class="product-details">
+                            <span id="productCategory" class="badge bg-primary mb-2" style="display: none;"></span>
+                            
+                            <!-- Product Tags -->
+                            <div id="productTags" class="mb-2"></div>
+                            
+                            <h1 id="productTitle" class="mb-3"></h1>
+                            
+                            <div id="productRating" class="mb-3"></div>
+                            
+                            <!-- SKU -->
+                            <div class="mb-3">
+                                <small class="text-muted">Mã sản phẩm: <span id="productSku"></span></small>
+                            </div>
+                            
+                            <div class="price-container mb-4">
+                                <span class="current-price" id="productPrice"></span>
+                                <small class="text-success ms-2" id="priceNote"></small>
+                            </div>
+                            
+                            <!-- Stock Status -->
+                            <div class="mb-3">
+                                <span id="stockStatus"></span>
+                            </div>
+                            
+                            <!-- Variant Selection -->
+                            <div id="variantContainer" class="mb-3">
+                                <!-- Variant selection will be added here -->
+                            </div>
+                            
+                            <!-- Variant Details -->
+                            <div id="variantDetails" class="mb-4">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p><strong>Màu sắc:</strong> <span id="variantColor">-</span></p>
+                                        <p><strong>Bộ nhớ:</strong> <span id="variantSize">-</span></p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><strong>Chất liệu:</strong> <span id="variantMaterial">-</span></p>
+                                        <p><strong>Thông số:</strong> <span id="variantSpecs">-</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Quantity Control -->
+                            <div class="quantity-control mb-4">
+                                <label class="form-label">Số lượng:</label>
+                                <div class="d-flex align-items-center">
+                                    <button id="decreaseQty" class="btn btn-outline-secondary">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <input type="number" id="quantity" class="form-control mx-2" value="1" min="1" max="10" style="width: 80px;">
+                                    <button id="increaseQty" class="btn btn-outline-secondary">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Action Buttons -->
+                            <div class="action-buttons mb-4">
+                                <button id="addToCartBtn" class="btn btn-primary btn-lg me-2">
+                                    <i class="fas fa-shopping-cart"></i> Thêm vào giỏ
+                                </button>
+                                <button id="addToWishlistBtn" class="btn btn-outline-primary btn-lg">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                            </div>
+                            
+                            <!-- Product Description -->
+                            <div class="product-description">
+                                <h5>Mô tả sản phẩm</h5>
+                                <p id="productDescription" class="text-muted"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-white py-5 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>Về HomeStore</h5>
+                    <p>Chúng tôi cung cấp các sản phẩm chất lượng cao với giá cả hợp lý.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Liên Hệ</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-phone me-2"></i> 1900 1234</li>
+                        <li><i class="fas fa-envelope me-2"></i> support@homestore.com</li>
+                        <li><i class="fas fa-map-marker-alt me-2"></i> 123 Đường ABC, Quận XYZ, TP.HCM</li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Theo Dõi Chúng Tôi</h5>
+                    <div class="social-links">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="../js/product-detail.js"></script>
+</body>
+</html> 

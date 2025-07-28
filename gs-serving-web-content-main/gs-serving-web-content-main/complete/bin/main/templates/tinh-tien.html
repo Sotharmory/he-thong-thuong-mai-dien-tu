@@ -1,0 +1,37 @@
+<!-- ==== templates/tinh-tien.html - SinhVienB ==== -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Kết quả tính tiền</title>
+</head>
+<body>
+<h2>Chi tiết hóa đơn</h2>
+<p>Khách hàng: <span th:text="${hoaDon.tenKhachHang}"></span></p>
+<p>SĐT: <span th:text="${hoaDon.soDienThoai}"></span></p>
+
+<ul>
+    <li th:each="sp : ${hoaDon.danhSachSanPham}">
+        <span th:text="${sp.tenSanPham}"></span>: 
+        <span th:text="${sp.soLuong}"></span> x 
+        <span th:text="${sp.donGia}"></span>
+    </li>
+</ul>
+
+<p>Tổng gốc: <span th:text="${tongGoc}"></span></p>
+<p>Giảm giá: <span th:text="${giamGia}"></span></p>
+<p>Thuế VAT: <span th:text="${thueVAT}"></span></p>
+<h3>Tổng thanh toán: <span th:text="${tongCuoiCung}"></span></h3>
+
+<form th:action="@{/xem-hoadon}" method="post">
+    <input type="hidden" name="tongCuoiCung" th:value="${tongCuoiCung}"/>
+    <input type="hidden" th:object="${hoaDon}" th:field="*{tenKhachHang}" />
+    <input type="hidden" th:field="*{soDienThoai}" />
+    <div th:each="sp, i : ${hoaDon.danhSachSanPham}">
+        <input type="hidden" th:name="danhSachSanPham[__${i.index}__].tenSanPham" th:value="${sp.tenSanPham}"/>
+        <input type="hidden" th:name="danhSachSanPham[__${i.index}__].soLuong" th:value="${sp.soLuong}"/>
+        <input type="hidden" th:name="danhSachSanPham[__${i.index}__].donGia" th:value="${sp.donGia}"/>
+    </div>
+    <button type="submit">Xem & Lưu hóa đơn</button>
+</form>
+</body>
+</html>

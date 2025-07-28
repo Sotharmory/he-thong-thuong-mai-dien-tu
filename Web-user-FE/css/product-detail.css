@@ -1,0 +1,124 @@
+.product-details {
+    padding: 20px;
+}
+
+.product-details #productTags .badge {
+    font-size: 0.9rem;
+    padding: 6px 12px;
+    border-radius: 4px;
+}
+
+.product-details .current-price {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #e53935;
+}
+
+.product-details #priceNote {
+    font-size: 0.9rem;
+}
+
+.product-details #stockStatus {
+    font-size: 0.9rem;
+}
+
+.product-details #stockStatus.in-stock {
+    color: #4caf50;
+}
+
+.product-details #stockStatus.out-of-stock {
+    color: #f44336;
+}
+
+.product-details #variantDetails {
+    background-color: #f5f5f5;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.product-details #variantDetails p {
+    margin-bottom: 8px;
+}
+
+.product-details #variantDetails strong {
+    color: #666;
+}
+
+.quantity-control .form-control {
+    text-align: center;
+}
+
+.quantity-control button {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.action-buttons .btn {
+    padding: 12px 24px;
+}
+
+.action-buttons .btn i {
+    margin-right: 8px;
+}
+
+.product-description {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.product-description h5 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.product-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    overflow: hidden;
+    min-height: 400px;
+}
+
+.product-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.product-image i {
+    font-size: 48px;
+    color: #ccc;
+}
+
+#variantSelect {
+    max-width: 100%;
+}
+
+#variantSelect option:disabled {
+    color: #dc3545;
+    font-style: italic;
+}
+
+@media (max-width: 768px) {
+    .product-details {
+        padding: 15px;
+    }
+    
+    .product-details .current-price {
+        font-size: 1.5rem;
+    }
+    
+    .action-buttons .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .product-image {
+        min-height: 300px;
+    }
+} 

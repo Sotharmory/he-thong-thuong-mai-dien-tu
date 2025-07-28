@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ Hàng - HomeStore</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="../css/global.css">
+    
+    <style>
+        .cart-item {
+            border-bottom: 1px solid #eee;
+            padding: 20px 0;
+        }
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        .product-image {
+            width: 80px;
+            height: 80px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #6c757d;
+        }
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .quantity-btn {
+            width: 35px;
+            height: 35px;
+            border: 1px solid #ddd;
+            background: #fff;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .quantity-btn:hover {
+            background: #f8f9fa;
+            border-color: #007bff;
+        }
+        .quantity-input {
+            width: 60px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 8px;
+        }
+        .cart-summary {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            position: sticky;
+            top: 20px;
+        }
+        .empty-cart {
+            text-align: center;
+            padding: 60px 0;
+        }
+        .empty-cart i {
+            font-size: 4rem;
+            color: #6c757d;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header-section">
+        <!-- Top Bar -->
+        <div class="top-bar bg-dark text-white py-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <small><i class="fas fa-phone"></i> Hotline: 1900 1234</small>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <small><i class="fas fa-truck"></i> Miễn phí giao hàng toàn quốc</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+            <div class="container">
+                <a class="navbar-brand fw-bold" href="../index.html">
+                    <i class="fas fa-home"></i> HomeStore
+                </a>
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html">Trang Chủ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="products.html">Sản Phẩm</a>
+                        </li>
+                    </ul>
+                    
+                    <div class="d-flex">
+                        <a href="cart.html" class="btn btn-outline-primary position-relative me-2">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cartBadge">
+                                0
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="py-5">
+        <div class="container">
+            <!-- Breadcrumb -->
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../index.html">Trang Chủ</a></li>
+                    <li class="breadcrumb-item active">Giỏ Hàng</li>
+                </ol>
+            </nav>
+
+            <h1 class="mb-4">Giỏ Hàng Của Bạn</h1>
+
+            <div class="row">
+                <div class="col-lg-8">
+                    <!-- Cart Items Container -->
+                    <div id="cartItemsContainer">
+                        <!-- Cart items will be loaded here -->
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <!-- Cart Summary -->
+                    <div class="cart-summary">
+                        <h5 class="mb-3">Tóm Tắt Đơn Hàng</h5>
+                        
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Tạm tính:</span>
+                            <span id="subtotal">0đ</span>
+                        </div>
+                        
+                        <!-- Coupon Section -->
+                        <div class="mb-3">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="couponCode" placeholder="Nhập mã giảm giá">
+                                <button class="btn btn-outline-primary" type="button" onclick="applyCoupon()">
+                                    Áp dụng
+                                </button>
+                            </div>
+                            <div id="couponMessage" class="small mt-1"></div>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Giảm giá:</span>
+                            <span id="discount" class="text-danger">-0đ</span>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Phí vận chuyển:</span>
+                            <span id="shipping">Miễn phí</span>
+                        </div>
+                        
+                        <hr>
+                        
+                        <div class="d-flex justify-content-between mb-3 fw-bold">
+                            <span>Tổng cộng:</span>
+                            <span id="total" class="text-primary">0đ</span>
+                        </div>
+                        
+                        <button class="btn btn-primary w-100 btn-lg" id="checkoutBtn" onclick="openCheckoutModal()">
+                            <i class="fas fa-credit-card me-2"></i>
+                            Thanh Toán
+                        </button>
+                        
+                        <div class="mt-3 text-center">
+                            <a href="../index.html" class="text-decoration-none">
+                                <i class="fas fa-arrow-left me-2"></i>
+                                Tiếp tục mua sắm
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Checkout Modal -->
+    <div class="modal fade" id="checkoutModal" tabindex="-1" aria-labelledby="checkoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="checkoutModalLabel">
+                        <i class="fas fa-credit-card me-2"></i>
+                        Thông Tin Thanh Toán
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="checkoutForm">
+                    <div class="modal-body">
+                        <div class="row">
+                            <!-- Customer Information -->
+                            <div class="col-md-6">
+                                <h6 class="mb-3 text-primary">Thông Tin Khách Hàng</h6>
+                                
+                                <div class="mb-3">
+                                    <label for="customerName" class="form-label">Họ và tên *</label>
+                                    <input type="text" class="form-control" id="customerName" required>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="customerPhone" class="form-label">Số điện thoại *</label>
+                                    <input type="tel" class="form-control" id="customerPhone" required>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="customerEmail" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="customerEmail">
+                                </div>
+                            </div>
+                            
+                            <!-- Delivery Information -->
+                            <div class="col-md-6">
+                                <h6 class="mb-3 text-primary">Thông Tin Giao Hàng</h6>
+                                
+                                <div class="mb-3">
+                                    <label for="deliveryAddress" class="form-label">Địa chỉ giao hàng *</label>
+                                    <textarea class="form-control" id="deliveryAddress" rows="3" required></textarea>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="deliveryCity" class="form-label">Thành phố *</label>
+                                            <select class="form-control" id="deliveryCity" required>
+                                                <option value="">Chọn thành phố</option>
+                                                <option value="HCM">Hồ Chí Minh</option>
+                                                <option value="HN">Hà Nội</option>
+                                                <option value="DN">Đà Nẵng</option>
+                                                <option value="HP">Hải Phòng</option>
+                                                <option value="CT">Cần Thơ</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="deliveryDistrict" class="form-label">Quận/Huyện *</label>
+                                            <input type="text" class="form-control" id="deliveryDistrict" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="deliveryWard" class="form-label">Phường/Xã *</label>
+                                    <input type="text" class="form-control" id="deliveryWard" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <hr>
+                        
+                        <!-- Payment Method -->
+                        <h6 class="mb-3 text-primary">Phương Thức Thanh Toán</h6>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="paymentMethod" id="codPayment" value="COD" checked>
+                                    <label class="form-check-label" for="codPayment">
+                                        <i class="fas fa-money-bill-wave me-2"></i>
+                                        Thanh toán khi nhận hàng (COD)
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="paymentMethod" id="bankTransfer" value="BANK_TRANSFER">
+                                    <label class="form-check-label" for="bankTransfer">
+                                        <i class="fas fa-university me-2"></i>
+                                        Chuyển khoản ngân hàng
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="paymentMethod" id="creditCard" value="CREDIT_CARD">
+                                    <label class="form-check-label" for="creditCard">
+                                        <i class="fas fa-credit-card me-2"></i>
+                                        Thẻ tín dụng
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="paymentMethod" id="ewallet" value="E_WALLET">
+                                    <label class="form-check-label" for="ewallet">
+                                        <i class="fas fa-wallet me-2"></i>
+                                        Ví điện tử
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <hr>
+                        
+                        <!-- Order Notes -->
+                        <div class="mb-3">
+                            <label for="orderNotes" class="form-label">Ghi chú đơn hàng</label>
+                            <textarea class="form-control" id="orderNotes" rows="3" placeholder="Ghi chú đặc biệt cho đơn hàng..."></textarea>
+                        </div>
+                        
+                        <!-- Order Summary -->
+                        <div class="bg-light p-3 rounded">
+                            <h6 class="mb-2">Tóm Tắt Đơn Hàng</h6>
+                            <div id="orderSummary">
+                                <!-- Order summary will be loaded here -->
+                            </div>
+                            <hr class="my-2">
+                            <div class="d-flex justify-content-between fw-bold">
+                                <span>Tổng thanh toán:</span>
+                                <span class="text-primary" id="finalTotal">0đ</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-check me-2"></i>
+                            Xác Nhận Đặt Hàng
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- JavaScript -->
+    <script src="../js/global.js"></script>
+    <script>
+        const API_BASE_URL = 'http://localhost:8080/api';
+        let cartItems = [];
+        let appliedCoupon = null;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCartItems();
+            setupEventListeners();
+        });
+
+        function loadCartItems() {
+            cartItems = JSON.parse(localStorage.getItem('homestore_cart')) || [];
+            displayCartItems();
+            updateCartSummary();
+            updateCartBadge();
+        }
+
+        function displayCartItems() {
+            const container = document.getElementById('cartItemsContainer');
+            
+            if (cartItems.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <h4>Giỏ hàng của bạn đang trống</h4>
+                        <p class="text-muted">Hãy thêm một số sản phẩm để bắt đầu mua sắm!</p>
+                        <a href="../index.html" class="btn btn-primary">Tiếp tục mua sắm</a>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = '';
+            cartItems.forEach((item, index) => {
+                html += `
+                    <div class="cart-item">
+                        <div class="row align-items-center">
+                            <div class="col-md-2">
+                                <div class="product-image">
+                                    <i class="${item.image || 'fas fa-shopping-bag'}"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <h6 class="mb-1">${item.name}</h6>
+                                <p class="text-muted small mb-0">SKU: ${item.id}</p>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="fw-bold">${formatCurrency(item.price)}</div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="quantity-control">
+                                    <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <input type="number" class="quantity-input" value="${item.quantity}" 
+                                           onchange="setQuantity(${index}, this.value)" min="1">
+                                    <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <button class="btn btn-outline-danger btn-sm" onclick="removeItem(${index})">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function updateQuantity(index, change) {
+            cartItems[index].quantity += change;
+            if (cartItems[index].quantity <= 0) {
+                removeItem(index);
+                return;
+            }
+            saveCart();
+            loadCartItems();
+        }
+
+        function setQuantity(index, quantity) {
+            const qty = parseInt(quantity);
+            if (qty <= 0) {
+                removeItem(index);
+                return;
+            }
+            cartItems[index].quantity = qty;
+            saveCart();
+            updateCartSummary();
+        }
+
+        function removeItem(index) {
+            cartItems.splice(index, 1);
+            saveCart();
+            loadCartItems();
+        }
+
+        function saveCart() {
+            localStorage.setItem('homestore_cart', JSON.stringify(cartItems));
+        }
+
+        function updateCartSummary() {
+            const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const discount = calculateDiscount(subtotal);
+            const total = subtotal - discount;
+            
+            document.getElementById('subtotal').textContent = formatCurrency(subtotal);
+            document.getElementById('discount').textContent = `-${formatCurrency(discount)}`;
+            document.getElementById('total').textContent = formatCurrency(total);
+            document.getElementById('finalTotal').textContent = formatCurrency(total);
+        }
+
+        function updateCartBadge() {
+            const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cartBadge').textContent = totalItems;
+        }
+
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND'
+            }).format(amount);
+        }
+
+        function openCheckoutModal() {
+            if (cartItems.length === 0) {
+                alert('Giỏ hàng trống!');
+                return;
+            }
+            
+            updateOrderSummary();
+            const modal = new bootstrap.Modal(document.getElementById('checkoutModal'));
+            modal.show();
+        }
+
+        function updateOrderSummary() {
+            const container = document.getElementById('orderSummary');
+            let html = '';
+            
+            cartItems.forEach(item => {
+                html += `
+                    <div class="d-flex justify-content-between small mb-1">
+                        <span>${item.name} x ${item.quantity}</span>
+                        <span>${formatCurrency(item.price * item.quantity)}</span>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+
+        function setupEventListeners() {
+            document.getElementById('checkoutForm').addEventListener('submit', handleCheckout);
+        }
+
+        async function applyCoupon() {
+            const couponCode = document.getElementById('couponCode').value.trim();
+            const messageDiv = document.getElementById('couponMessage');
+            
+            if (!couponCode) {
+                messageDiv.className = 'small mt-1 text-danger';
+                messageDiv.textContent = 'Vui lòng nhập mã giảm giá';
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/coupons/validate`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        code: couponCode,
+                        orderAmount: cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0),
+                        productIds: cartItems.map(item => item.id),
+                        categoryIds: []
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.valid) {
+                    // Get coupon details
+                    const couponResponse = await fetch(`${API_BASE_URL}/coupons/code/${couponCode}`);
+                    const couponDetails = await couponResponse.json();
+                    
+                    appliedCoupon = couponDetails;
+                    messageDiv.className = 'small mt-1 text-success';
+                    messageDiv.textContent = 'Mã giảm giá đã được áp dụng!';
+                    updateCartSummary();
+                } else {
+                    messageDiv.className = 'small mt-1 text-danger';
+                    messageDiv.textContent = result.message || 'Mã giảm giá không hợp lệ';
+                    appliedCoupon = null;
+                    updateCartSummary();
+                }
+            } catch (error) {
+                messageDiv.className = 'small mt-1 text-danger';
+                messageDiv.textContent = 'Có lỗi xảy ra khi áp dụng mã giảm giá';
+                console.error('Error applying coupon:', error);
+            }
+        }
+
+        function calculateDiscount(subtotal) {
+            if (!appliedCoupon) return 0;
+            
+            let discount = 0;
+            if (appliedCoupon.type === 'PERCENTAGE') {
+                discount = subtotal * (parseFloat(appliedCoupon.value) / 100);
+                // Check maximum discount if set
+                if (appliedCoupon.maximumDiscountAmount) {
+                    const maxDiscount = parseFloat(appliedCoupon.maximumDiscountAmount);
+                    discount = Math.min(discount, maxDiscount);
+                }
+            } else if (appliedCoupon.type === 'FIXED_AMOUNT') {
+                discount = parseFloat(appliedCoupon.value);
+            }
+            
+            return discount;
+        }
+
+        async function handleCheckout(e) {
+            e.preventDefault();
+            
+            try {
+                // Get product variants first
+                const variantPromises = cartItems.map(async item => {
+                    const response = await fetch(`${API_BASE_URL}/products/${item.id}`);
+                    if (!response.ok) throw new Error(`Không thể tải thông tin sản phẩm: ${item.id}`);
+                    const product = await response.json();
+                    
+                    // Get first available variant or throw error
+                    const variant = product.variants && product.variants.length > 0 
+                        ? product.variants.find(v => v.stock > 0)
+                        : null;
+                        
+                    if (!variant) {
+                        throw new Error(`Sản phẩm ${item.name} không có phiên bản khả dụng`);
+                    }
+                    
+                    return {
+                        ...item,
+                        variantName: variant.name,
+                        variantSpecs: {
+                            size: variant.size || '',
+                            color: variant.color || '',
+                            material: variant.material || '',
+                            specifications: variant.specifications || ''
+                        }
+                    };
+                });
+                
+                const itemsWithVariants = await Promise.all(variantPromises);
+                
+                const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                const discount = calculateDiscount(subtotal);
+                const total = subtotal - discount;
+                
+                // Format order data according to backend structure
+                const orderData = {
+                    customer: {
+                        fullName: document.getElementById('customerName').value,
+                        phone: document.getElementById('customerPhone').value,
+                        email: document.getElementById('customerEmail').value
+                    },
+                    shippingAddress: {
+                        province: document.getElementById('deliveryCity').value,
+                        district: document.getElementById('deliveryDistrict').value,
+                        ward: document.getElementById('deliveryWard').value,
+                        streetAddress: document.getElementById('deliveryAddress').value
+                    },
+                    items: itemsWithVariants.map(item => ({
+                        productId: item.id,
+                        productName: item.name,
+                        basePrice: item.price,
+                        variantName: item.variantName,
+                        variantSpecs: item.variantSpecs,
+                        variantPrice: item.price,
+                        quantity: item.quantity,
+                        unitPrice: item.price,
+                        subtotal: item.price * item.quantity,
+                        thumbnailUrl: item.image
+                    })),
+                    payment: {
+                        method: document.querySelector('input[name="paymentMethod"]:checked').value,
+                        status: 'pending'
+                    },
+                    subtotal: subtotal,
+                    discountTotal: discount,
+                    shippingFee: 0,
+                    total: total,
+                    status: 'pending',
+                    orderDate: new Date().toISOString()
+                };
+
+                // Create order
+                const response = await fetch(`${API_BASE_URL}/orders`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(orderData)
+                });
+
+                if (!response.ok) {
+                    const error = await response.text();
+                    throw new Error(error || 'Có lỗi xảy ra khi đặt hàng');
+                }
+
+                // If order successful and coupon was applied, use the coupon
+                if (appliedCoupon) {
+                    await fetch(`${API_BASE_URL}/coupons/${appliedCoupon.code}/use`, {
+                        method: 'POST'
+                    });
+                }
+
+                // Clear cart and show success message
+                localStorage.removeItem('homestore_cart');
+                window.location.href = 'order-success.html';
+            } catch (error) {
+                console.error('Checkout error:', error);
+                alert('Có lỗi xảy ra khi đặt hàng: ' + error.message);
+            }
+        }
+    </script>
+</body>
+</html>

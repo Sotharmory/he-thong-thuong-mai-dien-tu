@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeStore - Cửa Hàng Thời Trang</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header-section">
+        <!-- Top Bar -->
+        <div class="top-bar bg-dark text-white py-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <small><i class="fas fa-phone"></i> Hotline: 1900 1234</small>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <small><i class="fas fa-truck"></i> Miễn phí giao hàng toàn quốc</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+            <div class="container">
+                <a class="navbar-brand fw-bold" href="index.html">
+                    <i class="fas fa-home"></i> HomeStore
+                </a>
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="index.html">Trang Chủ</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="menDropdown" role="button" data-bs-toggle="dropdown">
+                                Nam
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="pages/men-clothing.html">Quần Áo Nam</a></li>
+                                <li><a class="dropdown-item" href="pages/men-shoes.html">Giày Nam</a></li>
+                                <li><a class="dropdown-item" href="pages/men-accessories.html">Phụ Kiện Nam</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="womenDropdown" role="button" data-bs-toggle="dropdown">
+                                Nữ
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="pages/women-clothing.html">Quần Áo Nữ</a></li>
+                                <li><a class="dropdown-item" href="pages/women-shoes.html">Giày Nữ</a></li>
+                                <li><a class="dropdown-item" href="pages/women-accessories.html">Phụ Kiện Nữ</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="pages/kids.html">Trẻ Em</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="pages/sale.html">Sale</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="pages/about.html">Về Chúng Tôi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="pages/contact.html">Liên Hệ</a>
+                        </li>
+                    </ul>
+                    
+                    <div class="d-flex">
+                        <div class="search-box me-3">
+                            <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                        </div>
+                        <a href="pages/cart.html" class="btn btn-outline-primary position-relative me-2">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                3
+                            </span>
+                        </a>
+                        <a href="pages/wishlist.html" class="btn btn-outline-secondary">
+                            <i class="fas fa-heart"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+            </div>
+            
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="hero-slide bg-gradient-primary text-white d-flex align-items-center">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-6">
+                                    <h1 class="display-4 fw-bold mb-4">Bộ Sưu Tập Mùa Hè 2025</h1>
+                                    <p class="lead mb-4">Khám phá những xu hướng thời trang mới nhất với giá cả hợp lý</p>
+                                    <a href="pages/products.html" class="btn btn-light btn-lg">Mua Ngay</a>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="hero-image">
+                                        <i class="fas fa-tshirt hero-icon"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-item">
+                    <div class="hero-slide bg-gradient-success text-white d-flex align-items-center">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-6">
+                                    <h1 class="display-4 fw-bold mb-4">Giảm Giá Lên Đến 50%</h1>
+                                    <p class="lead mb-4">Sale cuối năm - Cơ hội mua sắm tuyệt vời nhất</p>
+                                    <a href="pages/sale.html" class="btn btn-light btn-lg">Xem Sale</a>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="hero-image">
+                                        <i class="fas fa-tags hero-icon"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-item">
+                    <div class="hero-slide bg-gradient-info text-white d-flex align-items-center">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-6">
+                                    <h1 class="display-4 fw-bold mb-4">Thời Trang Cho Mọi Người</h1>
+                                    <p class="lead mb-4">Từ trẻ em đến người lớn - Tìm phong cách của riêng bạn</p>
+                                    <a href="pages/products.html" class="btn btn-light btn-lg">Khám Phá</a>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="hero-image">
+                                        <i class="fas fa-users hero-icon"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section py-5">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h2 class="section-title">Danh Mục Sản Phẩm</h2>
+                    <p class="section-subtitle">Tìm kiếm theo danh mục yêu thích của bạn</p>
+                </div>
+            </div>
+            
+            <div class="row g-4" id="categoriesContainer">
+                <!-- Categories will be loaded by JavaScript from API -->
+                <div class="col-12 text-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Đang tải danh mục...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured-products py-5 bg-light">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h2 class="section-title">Sản Phẩm Nổi Bật</h2>
+                    <p class="section-subtitle">Khám phá những sản phẩm được yêu thích nhất</p>
+                </div>
+            </div>
+            
+            <!-- Products Container -->
+            <div id="productsByCategoryContainer">
+                <!-- Products will be loaded by JavaScript -->
+                <div class="text-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Đang tải sản phẩm...</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <a href="pages/products.html" class="btn btn-primary btn-lg">Xem Tất Cả Sản Phẩm</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-item text-center">
+                        <div class="service-icon mb-3">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <h5>Giao Hàng Nhanh</h5>
+                        <p>Giao hàng trong 1-2 ngày</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-item text-center">
+                        <div class="service-icon mb-3">
+                            <i class="fas fa-undo"></i>
+                        </div>
+                        <h5>Đổi Trả Dễ Dàng</h5>
+                        <p>Đổi trả trong 30 ngày</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-item text-center">
+                        <div class="service-icon mb-3">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h5>Hỗ Trợ 24/7</h5>
+                        <p>Tư vấn mọi lúc mọi nơi</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-item text-center">
+                        <div class="service-icon mb-3">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h5>Thanh Toán An Toàn</h5>
+                        <p>Bảo mật thông tin 100%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-section bg-dark text-white py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-3">HomeStore</h5>
+                    <p>Cửa hàng thời trang trực tuyến hàng đầu Việt Nam. Chúng tôi mang đến những sản phẩm chất lượng cao với giá cả hợp lý.</p>
+                    <div class="social-links">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-3">Danh Mục</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="pages/men-clothing.html" class="text-white-50">Thời Trang Nam</a></li>
+                        <li><a href="pages/women-clothing.html" class="text-white-50">Thời Trang Nữ</a></li>
+                        <li><a href="pages/kids.html" class="text-white-50">Thời Trang Trẻ Em</a></li>
+                        <li><a href="pages/accessories.html" class="text-white-50">Phụ Kiện</a></li>
+                        <li><a href="pages/sale.html" class="text-white-50">Sale</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-3">Hỗ Trợ Khách Hàng</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="pages/contact.html" class="text-white-50">Liên Hệ</a></li>
+                        <li><a href="pages/shipping.html" class="text-white-50">Chính Sách Giao Hàng</a></li>
+                        <li><a href="pages/return.html" class="text-white-50">Chính Sách Đổi Trả</a></li>
+                        <li><a href="pages/privacy.html" class="text-white-50">Chính Sách Bảo Mật</a></li>
+                        <li><a href="pages/faq.html" class="text-white-50">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-3">Liên Hệ</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> 123 Đường ABC, Quận 1, TP.HCM</li>
+                        <li class="mb-2"><i class="fas fa-phone me-2"></i> 1900 1234</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@homestore.vn</li>
+                    </ul>
+                    
+                    <div class="newsletter mt-4">
+                        <h6>Đăng Ký Nhận Tin</h6>
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Email của bạn">
+                            <button class="btn btn-primary" type="button">Đăng Ký</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <hr class="my-4">
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy;  HomeStore. Tất cả quyền được bảo lưu.</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <img src="https://via.placeholder.com/40x25/007bff/ffffff?text=VISA" alt="Visa" class="me-2">
+                    <img src="https://via.placeholder.com/40x25/ff6b35/ffffff?text=MC" alt="Mastercard" class="me-2">
+                    <img src="https://via.placeholder.com/40x25/28a745/ffffff?text=ATM" alt="ATM">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- JavaScript Files -->
+    <script src="js/global.js"></script>
+    <script src="js/home.js"></script>
+</body>
+</html> 
