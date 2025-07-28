@@ -1,0 +1,28 @@
+<!-- ==== templates/nhap.html - SinhVienA ==== -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Nhập thông tin hóa đơn</title>
+</head>
+<body>
+<h2>Nhập thông tin hóa đơn</h2>
+<form th:action="@{/nhap}" method="post" th:object="${hoaDon}">
+    <label>Tên khách hàng:</label><br>
+    <input type="text" th:field="*{tenKhachHang}" required><br><br>
+
+    <label>Số điện thoại:</label><br>
+    <input type="text" th:field="*{soDienThoai}" required><br><br>
+
+    <h3>Danh sách sản phẩm</h3>
+    <div th:each="i : ${#numbers.sequence(0, 2)}">
+        <p>Sản phẩm [[${i}+1]]:</p>
+        <input type="text" th:name="danhSachSanPham[__${i}__].tenSanPham" placeholder="Tên SP" required>
+        <input type="number" min="1" th:name="danhSachSanPham[__${i}__].soLuong" placeholder="Số lượng" required>
+        <input type="number" step="0.01" min="0" th:name="danhSachSanPham[__${i}__].donGia" placeholder="Đơn giá" required>
+        <br><br>
+    </div>
+
+    <button type="submit">Tính tiền</button>
+</form>
+</body>
+</html>
